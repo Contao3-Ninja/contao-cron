@@ -1,0 +1,50 @@
+========================
+TYPOlight Cron CHANGELOG
+========================
+
+Version 1.1.0 (2010-02-16)
+--------------------------
+- Adjusted for 2.8.0: use executeUncached() in place of execute().
+
+
+Version 1.0.0 (2009-06-11)
+--------------------------
+- Adjustments for 2.7.1
+
+
+Version 0.3.2 (2007-10-09)
+--------------------------
+- Change from global scalars $cronJobEndtime and $cronJobCompleted to array $cronJob
+  for more information and control.
+  (See http://www.typolight.org/wiki/extensions:cron#creating-well-behaved-batches)
+  
+Version 0.3.1 (2007-10-06)
+--------------------------
+- Added "run once" flag.
+
+Version 0.3.0 (2007-10-06)
+--------------------------
+- Make run-limit time based instead of count based.
+- Added cron run limit to TL settings.
+- Expose globals $cronJobEndtime and $cronJobCompleted for long running batches
+  (See http://www.typolight.org/wiki/extensions:cron#creating-well-behaved-batches)
+
+Version 0.2.1 (2007-09-30)
+--------------------------
+- Speed optimizations
+- Changed scheduler icon
+
+Version 0.2.0 (2007-09-29)
+--------------------------
+- Capture all output while running the job and save it in the system log. 
+  A job running without problem is supposed to execute silently (not to echo 
+  anything), so we flag it TL_ERROR when any output was captured. This is 
+  also great for debugging new batch scripts btw.
+
+- Switch error_level to E_ALL while executing the job, so we dont miss a 
+  potential problem in the batch script.
+
+  
+Version 0.1.1 (2007-09-29)
+--------------------------
+- First public release
