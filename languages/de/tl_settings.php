@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * TL_ROOT/system/modules/cron/languages/de/tl_settings.php 
  * 
@@ -19,4 +19,3 @@ $GLOBALS['TL_LANG']['tl_settings']['cron_legend'] = "CRON Erweiterung";
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['0'] = "Zeitbegrenzung";
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['1'] = "Geben Sie die Zeitbegrenzung in Sekunden ein, nach der jeder Job automatisch unterbrochen wird (0 deaktiviert alle Cron-Jobs).";
  
-?>

@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * TL_ROOT/system/modules/cron/languages/de/modules.php 
  * 
@@ -16,6 +16,5 @@
  */
  
 $GLOBALS['TL_LANG']['MOD']['cron']['0'] = "Scheduler";
-$GLOBALS['TL_LANG']['MOD']['cron']['1'] = "Ein Cron-ähnliches Scheduler-Modul für TYPOlight";
+$GLOBALS['TL_LANG']['MOD']['cron']['1'] = "Ein Cron-ähnliches Scheduler-Modul für Contao";
  
-?>

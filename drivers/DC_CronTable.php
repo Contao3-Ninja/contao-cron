@@ -1,4 +1,4 @@
-<?php
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -25,7 +25,13 @@
  * @filesource
  */
 
- require_once 'DC_Table.php';
+ //require_once 'DC_Table.php';
+ 
+/**
+ * HACK, only for POC
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace Contao;
 
 /**
  * Class DC_CronTable
@@ -35,7 +41,7 @@
  * @author     Acenes
  * @package    Helpdesk
  */
-class DC_CronTable extends DC_Table
+class DC_CronTable extends \DC_Table
 {
 
     /**
@@ -85,4 +91,3 @@ class DC_CronTable extends DC_Table
 	
 } // class DC_CronTable
 
-?>

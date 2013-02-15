@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -29,7 +29,7 @@
  * Initialize the system
  */
 define('TL_MODE', 'BE');
-require_once('../../initialize.php');
+require_once('../../../initialize.php');
 
 /**
  * Class PurgeLog
@@ -63,4 +63,3 @@ class PurgeLog extends Backend
 $objPurge = new PurgeLog();
 $objPurge->run();
 
-?>

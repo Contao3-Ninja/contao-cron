@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -32,4 +32,3 @@ $GLOBALS['TL_LANG']['tl_settings']['cron_legend'] = "CRON extension";
 
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit'] = 
 	array('Cron job run limit', 'Enter the time limit in seconds after which cron jobs shall be defered (0 disables all cron jobs).');
-?>

@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -25,7 +25,7 @@
  * @filesource
  */
  
-$text = &$GLOBALS['TL_LANG']['tl_cron'];
+$text = &$GLOBALS['TL_LANG']['tl_crontab'];
 
 /**
  * Fields
@@ -103,4 +103,3 @@ $text['dis_logging']= array('Disable logging', 'Disable logging for job %s');
 $text['enable']		= array('Enable execution', 'Enable execution of job %s');
 $text['disable']	= array('Disable execution', 'Disable execution of job %s');
 
-?>

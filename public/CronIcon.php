@@ -25,6 +25,6 @@
  * @filesource
  */
 Header("Content-Type: image/gif");
-include("CronController.php");
-readfile(TL_ROOT . '/system/modules/cron/images/cron.png');
-?>
+include("./CronController.php");
+//readfile(TL_ROOT . '/system/modules/cron/images/cron.png');
+readfile('./images/cron.png');

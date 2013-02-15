@@ -29,7 +29,7 @@
  * Initialize the system
  */
 define('TL_MODE', 'BE');
-require_once('../../initialize.php');
+require_once('../../../initialize.php');
 
 define('CRON_MAX_RUN', 5);	// stop processung jobs in one trigger after this time in seconds 
 
@@ -57,26 +57,32 @@ class CronController extends Backend
 		if ($limit<=0) return;
 		$currtime = time();
 		$endtime = $currtime+$limit;
-		$execute = (method_exists($this->Database, 'executeUncached')) ? 'executeUncached' : 'execute';
-        
+		//$execute = (method_exists($this->Database, 'executeUncached')) ? 'executeUncached' : 'execute';
+		$execute = 'executeUncached';
+		
 		// process cron list
-		$q = $this->Database->prepare(
-			"select * from `tl_cron` ".
-			"where `enabled`='1' ".
-			"and ((`nextrun`>0 and `nextrun`<?) or (`nextrun`=0 and `scheduled`<?)) ".
-			"order by `nextrun`, `scheduled`"
-		)->$execute($currtime, $currtime-86400);
+		$q = $this->Database->prepare("select * from `tl_crontab` 
+                            			 where `enabled`='1' 
+                            			 and (
+		                                       (`nextrun`>0 and `nextrun`<?) 
+		                                    or (`nextrun`=0 and `scheduled`<?)
+		                                     ) 
+                            			 order by `nextrun`, `scheduled`")
+		                    ->$execute($currtime, $currtime-86400);
 		$locked = false;
-		while ($q->next()) {
+		while ($q->next()) 
+		{
 			$currtime = time();
 			if ($currtime >= $endtime) break; 
-			if (!$locked) {
+			if (!$locked) 
+			{
 				// ensure exclusive access
 				$ql = $this->Database->prepare("select get_lock('cronlock',0) as lockstate")->$execute();
 				if (!$ql->next() || !intval($ql->lockstate)) return;
 				$locked = true;
 			} // if
-			if ($q->nextrun>0) { // due to execute
+			if ($q->nextrun>0) 
+			{ // due to execute
 				$cronJob = array(
 					'id'		=> $q->id,
 					'title'		=> $q->title,
@@ -87,42 +93,54 @@ class CronController extends Backend
 					'completed'	=> true
 				);
 				$output = $this->runJob($q);
-				if ($cronJob['completed']) {
+				if ($cronJob['completed']) 
+				{
 					if ($cronJob['runonce'])
+					{
 						$dataset = array(
 							'lastrun'	=> $currtime,
 							'nextrun'	=> 0,
 							'scheduled'	=> 0,
 							'enabled'	=> '0'
 						);
+					}
 					else
+					{
 						$dataset = array(
 							'lastrun'	=> $currtime,
 							'nextrun'	=> $this->schedule($q),
 							'scheduled'	=> $currtime
 						);
-					$this->Database->prepare("update `tl_cron` %s where id=?")
-						->set($dataset)
-						->$execute($q->id);
+					}
+					$this->Database->prepare("update `tl_crontab` %s where id=?")
+            						->set($dataset)
+            						->$execute($q->id);
 				} // if
-				if ($cronJob['logging'] || $output!='') {
+				if ($cronJob['logging'] || $output!='') 
+				{
 					if ($output!='') 
+					{
 						$this->log(
 							'Cron job <em>'.$q->title.'</em> failed:<br/>'.$output, 
 							'CronController run()', 
 							TL_ERROR);
-					else
+					}
+					else 
+					{
 						$this->log(
 							'Cron job <em>'.$q->title.'</em> '.($cronJob['completed'] ? 'completed.' : 'processed partially.'), 
 							'CronController run()', 
 							TL_GENERAL);
+					}
 				} // if
-			} else {
+			} 
+			else 
+			{
 				$dataset = array(
 					'nextrun'	=> $this->schedule($q),
 					'scheduled'	=> $currtime
 				);
-				$this->Database->prepare("update `tl_cron` %s where id=?")
+				$this->Database->prepare("update `tl_crontab` %s where id=?")
 					->set($dataset)
 					->$execute($q->id);
 			} // if
@@ -130,7 +148,9 @@ class CronController extends Backend
 		
 		// release lock
 		if ($locked)
+		{
 			$this->Database->prepare("select release_lock('cronlock')")->$execute();
+		}
 	} // run
 	
 	/**
@@ -170,7 +190,8 @@ class CronController extends Backend
 		
 		$nextrun = time()+60;
 		$maxdate = $nextrun+31536000; // schedule for one year ahead max
-		while ($nextrun < $maxdate) {
+		while ($nextrun < $maxdate) 
+		{
 			$dateArr	= getdate($nextrun);
 			$_seconds	= $dateArr['seconds'];
 			$_minutes	= $dateArr['minutes'];
@@ -179,17 +200,21 @@ class CronController extends Backend
 			$_wday		= $dateArr['wday'];
 			$_mon		= $dateArr['mon'];
 			
-			if (!$month[$_mon] || !$dom[$_mday] || !$dow[$_wday]) {
+			if (!$month[$_mon] || !$dom[$_mday] || !$dow[$_wday]) 
+			{
 				// increment to 00:00:00 of next day
 				$nextrun += 60*(60*(24-$_hours)-$_minutes)-$_seconds;
 				continue;
 			} // if
 			
 			$allhours = ($_hours==0);
-			while ($_hours < 24) {
-				if ($hour[$_hours]) {
+			while ($_hours < 24) 
+			{
+				if ($hour[$_hours]) 
+				{
 					$allminutes = ($_minutes==0);
-					while ($_minutes < 60) {
+					while ($_minutes < 60) 
+					{
 						if ($minute[$_minutes]) return $nextrun;
 						// increment to next minute
 						$nextrun += 60-$_seconds;
@@ -199,7 +224,9 @@ class CronController extends Backend
 					if ($allminutes) return 0;
 					$_hours++;
 					$_minutes = 0;
-				} else {
+				} 
+				else 
+				{
 					// increment to next hour
 					$nextrun += 60*(60-$_minutes)-$_seconds;
 					$_hours++;
@@ -222,11 +249,15 @@ class CronController extends Backend
 			$targetArray[$i] = $subelements[0] == "*";
 	
 		for ($i = 0; $i < count($subelements); $i++) {
-			if ( preg_match("~^(\\*|([0-9]{1,2})(-([0-9]{1,2}))?)(/([0-9]{1,2}))?$~", $subelements[$i], $matches) ) {
-				if ($matches[1]=='*') {
+			if ( preg_match("~^(\\*|([0-9]{1,2})(-([0-9]{1,2}))?)(/([0-9]{1,2}))?$~", $subelements[$i], $matches) ) 
+			{
+				if ($matches[1]=='*') 
+				{
 					$matches[2] = $base;					// all from
 					$matches[4] = $base+$numberOfElements;	// all to
-				} elseif ($matches[4]=='') {
+				} 
+				elseif ($matches[4]=='') 
+				{
 					$matches[4] = $matches[2];	// to = from
 				} // if
 				if ($matches[5][0]!='/')
@@ -247,4 +278,3 @@ class CronController extends Backend
 $objCron = new CronController();
 $objCron->run();
 
-?>

@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -31,10 +31,9 @@
  * -------------------------------------------------------------------------
  */
 $GLOBALS['BE_MOD']['system']['cron'] = array(
-	'tables'		=>	array('tl_cron'),
-	'icon'			=>	'system/modules/cron/CronIcon.php',
-	'stylesheet'	=>	'system/modules/cron/html/style.css'
+	'tables'		=>	array('tl_crontab'),
+	'icon'			=>	'system/modules/cron/public/CronIcon.php',
+	'stylesheet'	=>	'system/modules/cron/assets/style.css'
 );
 
 
-?>

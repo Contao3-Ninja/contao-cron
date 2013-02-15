@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -28,6 +28,5 @@
 /**
  * Back end modules
  */
-$GLOBALS['TL_LANG']['MOD']['cron'] = array('Scheduler', 'A cron like scheduler for TYPOlight');
+$GLOBALS['TL_LANG']['MOD']['cron'] = array('Scheduler', 'A cron like scheduler for Contao');
 
-?>

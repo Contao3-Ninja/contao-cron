@@ -1,4 +1,4 @@
-<?php if (!defined('TL_ROOT')) die('You can not access this file directly!');
+<?php 
 /**
  * TYPOlight Cron Scheduler
  *
@@ -40,4 +40,3 @@ $GLOBALS['TL_DCA']['tl_settings']['fields']['cron_limit'] = array(
 	'eval'		=> array('mandatory'=>true, 'rgxp'=>'digit', 'nospace'=>true)
 );
 
-?>
