@@ -1,28 +1,16 @@
 <?php
+
 /**
- * TYPOlight Cron Scheduler
+ * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
  *
- * Cron is a scheduler module for the TYPOlight CMS. It allows to automaticly 
- * execute php on a time schedule similar to the unix cron/crontab scheme.  
- * TYPOlight is a web content management system that specializes in accessibility
- * and generates W3C-compliant HTML code.
+ * Contao Module "Cron Scheduler"
  *
- * If you need to contact the author of this module, please use the forum at 
- * http://www.typolight.org/forum. Additional documentation can be found at the 
- * 3rd party extensions WIKI http://www.typolight.org/wiki/extensions:extensions
- * For more information about TYPOlight and additional applications please visit 
- * the project website http://www.typolight.org. 
- *
- * NOTE: this file was edited with tabs set to 4.
- *
- * CronController class implementation
- *
- * PHP version 5
- * @copyright  Acenes 2007-2010
- * @author     Acenes
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
  * @package    Cron
- * @license    GNU GENERAL PUBLIC LICENSE (GPL) Version 2, June 1991
+ * @license    LGPL
  * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-cron
  */
 
 /**
@@ -35,6 +23,10 @@ define('CRON_MAX_RUN', 5);	// stop processung jobs in one trigger after this tim
 
 /**
  * Class CronController
+ * 
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
+ * @package    Cron
  */
 class CronController extends Backend
 {
@@ -54,31 +46,38 @@ class CronController extends Backend
 		global $cronJob;
 		
 		$limit = is_null($GLOBALS['TL_CONFIG']['cron_limit']) ? 5 : intval($GLOBALS['TL_CONFIG']['cron_limit']);
-		if ($limit<=0) return;
+		if ($limit<=0) 
+		{ 
+		    return; 
+		}
 		$currtime = time();
-		$endtime = $currtime+$limit;
-		//$execute = (method_exists($this->Database, 'executeUncached')) ? 'executeUncached' : 'execute';
-		$execute = 'executeUncached';
+		$endtime  = $currtime+$limit;
 		
 		// process cron list
-		$q = $this->Database->prepare("select * from `tl_crontab` 
-                            			 where `enabled`='1' 
-                            			 and (
-		                                       (`nextrun`>0 and `nextrun`<?) 
-		                                    or (`nextrun`=0 and `scheduled`<?)
-		                                     ) 
-                            			 order by `nextrun`, `scheduled`")
-		                    ->$execute($currtime, $currtime-86400);
+		$q = $this->Database->prepare("SELECT * FROM `tl_crontab` 
+                                       WHERE `enabled`='1' 
+                                       AND (
+                                             (`nextrun`>0 and `nextrun`<?) 
+                                          OR (`nextrun`=0 and `scheduled`<?)
+                                           ) 
+                                       ORDER BY `nextrun`, `scheduled`")
+                            ->executeUncached($currtime, $currtime-86400);
 		$locked = false;
 		while ($q->next()) 
 		{
 			$currtime = time();
-			if ($currtime >= $endtime) break; 
+			if ($currtime >= $endtime) 
+			{
+			    break; 
+			}
 			if (!$locked) 
 			{
 				// ensure exclusive access
-				$ql = $this->Database->prepare("select get_lock('cronlock',0) as lockstate")->$execute();
-				if (!$ql->next() || !intval($ql->lockstate)) return;
+				$ql = $this->Database->prepare("SELECT get_lock('cronlock',0) AS lockstate")->executeUncached();
+				if ( !$ql->next() || !intval($ql->lockstate) ) 
+				{
+				    return;
+				}
 				$locked = true;
 			} // if
 			if ($q->nextrun>0) 
@@ -112,9 +111,9 @@ class CronController extends Backend
 							'scheduled'	=> $currtime
 						);
 					}
-					$this->Database->prepare("update `tl_crontab` %s where id=?")
-            						->set($dataset)
-            						->$execute($q->id);
+					$this->Database->prepare("UPDATE `tl_crontab` %s WHERE id=?")
+                                   ->set($dataset)
+                                   ->executeUncached($q->id);
 				} // if
 				if ($cronJob['logging'] || $output!='') 
 				{
@@ -140,16 +139,16 @@ class CronController extends Backend
 					'nextrun'	=> $this->schedule($q),
 					'scheduled'	=> $currtime
 				);
-				$this->Database->prepare("update `tl_crontab` %s where id=?")
-					->set($dataset)
-					->$execute($q->id);
+				$this->Database->prepare("UPDATE `tl_crontab` %s WHERE id=?")
+                               ->set($dataset)
+                               ->executeUncached($q->id);
 			} // if
 		} // while
 		
 		// release lock
 		if ($locked)
 		{
-			$this->Database->prepare("select release_lock('cronlock')")->$execute();
+			$this->Database->prepare("SELECT release_lock('cronlock')")->executeUncached();
 		}
 	} // run
 	
@@ -170,6 +169,12 @@ class CronController extends Backend
 	 */
 	private function schedule(&$qjob)
 	{
+	    $minute = array();
+	    $hour   = array();
+	    $dom    = array();
+	    $month  = array();
+	    $dow    = array();
+	    
 		$dowNum = 
 			str_ireplace(
 				array('Sun','Mon','Tue','Wed','Thu','Fri','Sat'),

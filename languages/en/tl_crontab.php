@@ -1,105 +1,74 @@
 <?php 
+
 /**
- * TYPOlight Cron Scheduler
+ * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
  *
- * Cron is a scheduler module for the TYPOlight CMS. It allows to automaticly 
- * execute php on a time schedule similar to the unix cron/crontab scheme.  
- * TYPOlight is a web content management system that specializes in accessibility
- * and generates W3C-compliant HTML code.
+ * Contao Module "Cron Scheduler"
+ * TL_ROOT/system/modules/cron/languages/en/tl_crontab.php
+ * English translation file
  *
- * If you need to contact the author of this module, please use the forum at 
- * http://www.typolight.org/forum. Additional documentation can be found at the 
- * 3rd party extensions WIKI http://www.typolight.org/wiki/extensions:extensions
- * For more information about TYPOlight and additional applications please visit 
- * the project website http://www.typolight.org. 
- *
- * NOTE: this file was edited with tabs set to 4.
- *
- * Language file for table tl_cron (en).
- *
- * PHP version 5
- * @copyright  Acenes 2007
- * @author     Acenes
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
  * @package    Cron
- * @license    GNU GENERAL PUBLIC LICENSE (GPL) Version 2, June 1991
+ * @license    LGPL
  * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-cron
  */
  
-$text = &$GLOBALS['TL_LANG']['tl_crontab'];
-
 /**
  * Fields
  */
-$text['title'] = array(
-	'Title',
-	'Enter a descriptive title for the job.'
-);
-$text['job'] = array(
-	'Job', 
-	'Enter the path of the PHP script to execute.'
-);
-$text['t_minute'] = array(
-	'Minute', 
-	'List the minutes for example as 5,10,15-20,30.<br />'.
-	'Use the form */15 for example for every 15 minutes.<br />'.
-	'Enter * for every minute.'
-);
-$text['t_hour'] = array(
-	'Hour', 
-	'List the hours for example as 2,4,5-7,9.<br />'.
-	'Use the form */3 for example for every 3 hours.<br />'.
-	'Enter * for every hour.'
-);
-$text['t_dom'] = array(
-	'Day of month', 
-	'List the days of month for example as 1,10,14-16,20.<br />'.
-	'Enter * for all days.'
-);
-$text['t_month'] = array(
-	'Month',
-	'List the month numbers as 1,3,7-9, or name shortcuts as Jan,Mar,Jul-Sep for example.<br />'.
-	'Enter * for every month.'
-);
-$text['t_dow'] = array(
-	'Day of week', 
-	'List the day numbers (0=sunday) as 0,2-4,7 or name shortcuts as Sun,Tue-Thu,Sat for example.<br />'.
-	'Enter * for every day of week.'
-);
-$text['runonce'] = array(
-	'Run once', 
-	'Disable job after completion.'
-);
-$text['enabled'] = array(
-	'Enabled', 
-	'Enable execution of this job.'
-);
-$text['logging'] = array(
-	'Logging', 
-	'Make log entry when job is executed'
-);
+$GLOBALS['TL_LANG']['tl_crontab']['title']['0']    = "Titel";
+$GLOBALS['TL_LANG']['tl_crontab']['title']['1']    = "Enter a descriptive title for the job.";
+$GLOBALS['TL_LANG']['tl_crontab']['job']['0']      = "Job";
+$GLOBALS['TL_LANG']['tl_crontab']['job']['1']      = "Enter the path of the PHP script to execute.";
+$GLOBALS['TL_LANG']['tl_crontab']['t_minute']['0'] = "Minute";
+$GLOBALS['TL_LANG']['tl_crontab']['t_minute']['1'] = "List the minutes for example as 5,10,15-20,30.<br />Use the form */15 for example for every 15 minutes.<br />Enter * for every minute.";
+$GLOBALS['TL_LANG']['tl_crontab']['t_hour']['0']   = "Hour";
+$GLOBALS['TL_LANG']['tl_crontab']['t_hour']['1']   = "List the hours for example as 2,4,5-7,9.<br />Use the form */3 for example for every 3 hours.<br />Enter * for every hour.";
+$GLOBALS['TL_LANG']['tl_crontab']['t_dom']['0']    = "Day of month";
+$GLOBALS['TL_LANG']['tl_crontab']['t_dom']['1']    = "List the days of month for example as 1,10,14-16,20.<br />Enter * for all days.";
+$GLOBALS['TL_LANG']['tl_crontab']['t_month']['0']  = "Month";
+$GLOBALS['TL_LANG']['tl_crontab']['t_month']['1']  = "List the month numbers as 1,3,7-9, or name shortcuts as Jan,Mar,Jul-Sep for example.<br />Enter * for every month.";
+$GLOBALS['TL_LANG']['tl_crontab']['t_dow']['0']    = "Day of week";
+$GLOBALS['TL_LANG']['tl_crontab']['t_dow']['1']    = "List the day numbers (0=sunday) as 0,2-4,7 or name shortcuts as Sun,Tue-Thu,Sat for example.<br />Enter * for every day of week.";
+$GLOBALS['TL_LANG']['tl_crontab']['runonce']['0']  = "Run once";
+$GLOBALS['TL_LANG']['tl_crontab']['runonce']['1']  = "Disable job after completion.";
+$GLOBALS['TL_LANG']['tl_crontab']['enabled']['0']  = "Enabled";
+$GLOBALS['TL_LANG']['tl_crontab']['enabled']['1']  = "Enable execution of this job.";
+$GLOBALS['TL_LANG']['tl_crontab']['logging']['0']  = "Logging";
+$GLOBALS['TL_LANG']['tl_crontab']['logging']['1']  = "Make log entry when job is executed.";
 
 /**
  * Reference
  */
-$text['tl_minute']	= 'Minute';
-$text['tl_hour']	= 'Hour';
-$text['tl_dom']		= 'DOM';
-$text['tl_month']	= 'Month';
-$text['tl_dow']		= 'DOW';
-$text['lastrun']	= 'Last run';
-$text['nextrun']	= 'Next run';
-
+$GLOBALS['TL_LANG']['tl_crontab']['tl_minute']	= 'Minute';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_hour']	= 'Hour';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_dom']		= 'DOM';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_month']	= 'Month';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_dow']		= 'DOW';
+$GLOBALS['TL_LANG']['tl_crontab']['lastrun']	= 'Last run';
+$GLOBALS['TL_LANG']['tl_crontab']['nextrun']	= 'Next run';
 
 /**
  * Buttons
  */
-$text['new']		= array('New', 'Create a new job.');
-$text['edit']		= array('Edit', 'Edit the settings of this job.');
-$text['copy']		= array('Copy', 'Copy this job.');
-$text['delete']		= array('Delete', 'Delete this job.');
-$text['show']		= array('Show', 'View the details.');
-$text['ena_logging']= array('Enable logging', 'Enable logging for job %s');
-$text['dis_logging']= array('Disable logging', 'Disable logging for job %s');
-$text['enable']		= array('Enable execution', 'Enable execution of job %s');
-$text['disable']	= array('Disable execution', 'Disable execution of job %s');
+$GLOBALS['TL_LANG']['tl_crontab']['new']['0']         = 'New';
+$GLOBALS['TL_LANG']['tl_crontab']['new']['1']         = 'Create a new job.';
+$GLOBALS['TL_LANG']['tl_crontab']['edit']['0']        = 'Edit';
+$GLOBALS['TL_LANG']['tl_crontab']['edit']['1']        = 'Edit the settings of this job.';
+$GLOBALS['TL_LANG']['tl_crontab']['copy']['0']        = 'Copy';
+$GLOBALS['TL_LANG']['tl_crontab']['copy']['1']        = 'Copy this job.';
+$GLOBALS['TL_LANG']['tl_crontab']['delete']['0']      = 'Delete';
+$GLOBALS['TL_LANG']['tl_crontab']['delete']['1']      = 'Delete this job.';
+$GLOBALS['TL_LANG']['tl_crontab']['show']['0']        = 'Show';
+$GLOBALS['TL_LANG']['tl_crontab']['show']['1']        = 'View the details.';
+$GLOBALS['TL_LANG']['tl_crontab']['ena_logging']['0'] = 'Enable logging';
+$GLOBALS['TL_LANG']['tl_crontab']['ena_logging']['1'] = 'Enable logging for job %s';
+$GLOBALS['TL_LANG']['tl_crontab']['dis_logging']['0'] = 'Disable logging';
+$GLOBALS['TL_LANG']['tl_crontab']['dis_logging']['1'] = 'Disable logging for job %s';
+$GLOBALS['TL_LANG']['tl_crontab']['enable']['0']      = 'Enable execution';
+$GLOBALS['TL_LANG']['tl_crontab']['enable']['1']      = 'Enable execution of job %s';
+$GLOBALS['TL_LANG']['tl_crontab']['disable']['0']     = 'Disable execution';
+$GLOBALS['TL_LANG']['tl_crontab']['disable']['1']     = 'Disable execution of job %s';
 

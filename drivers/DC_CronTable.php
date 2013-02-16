@@ -1,45 +1,32 @@
 <?php 
+
 /**
- * TYPOlight Cron Scheduler
+ * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
  *
- * Cron is a scheduler module for the TYPOlight CMS. It allows to automaticly 
- * execute php on a time schedule similar to the unix cron/crontab scheme.  
- * TYPOlight is a web content management system that specializes in accessibility
- * and generates W3C-compliant HTML code.
+ * Contao Module "Cron Scheduler" - Driver DC_CronTable
  *
- * If you need to contact the author of this module, please use the forum at 
- * http://www.typolight.org/forum. Additional documentation can be found at the 
- * 3rd party extensions WIKI http://www.typolight.org/wiki/extensions:extensions
- * For more information about TYPOlight and additional applications please visit 
- * the project website http://www.typolight.org. 
- *
- * NOTE: this file was edited with tabs set to 4.
- *
- * DC_CronTable class implementation.
- *
- * PHP version 5
- * @copyright  Acenes 2007
- * @author     Acenes
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
  * @package    Cron
- * @license    GNU GENERAL PUBLIC LICENSE (GPL) Version 2, June 1991
+ * @license    LGPL
  * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-cron
  */
 
- //require_once 'DC_Table.php';
- 
 /**
  * HACK, only for POC
  * Run in a custom namespace, so the class can be replaced
  */
-namespace Contao;
+namespace Contao; //TODO; own Namespace
 
 /**
  * Class DC_CronTable
  *
  * Provide methods to access and modify data stored in a table.
- * @copyright  Acenes 2007
- * @author     Acenes
- * @package    Helpdesk
+ * 
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
+ * @package    Cron
  */
 class DC_CronTable extends \DC_Table
 {
@@ -55,37 +42,41 @@ class DC_CronTable extends \DC_Table
 	
 	public function enable()
 	{
-		if ($this->intId) 
-			$this->Database->prepare(
-				"UPDATE " . $this->strTable . " SET `enabled`='1' WHERE id=?"
-			)->execute($this->intId);
+		if ($this->intId)
+		{ 
+			$this->Database->prepare("UPDATE " . $this->strTable . " SET `enabled`='1' WHERE id=?")
+                           ->execute($this->intId);
+		}
 		$this->redirect($this->getReferer());
 	} // enable
 	
 	public function disable()
 	{
 		if ($this->intId) 
-			$this->Database->prepare(
-				"UPDATE " . $this->strTable . " SET `enabled`='0', `nextrun`=0, `scheduled`=0 WHERE id=?"
-			)->execute($this->intId);
+		{
+			$this->Database->prepare("UPDATE " . $this->strTable . " SET `enabled`='0', `nextrun`=0, `scheduled`=0 WHERE id=?")
+                           ->execute($this->intId);
+		}
 		$this->redirect($this->getReferer());
 	} // disable
 	
 	public function ena_logging()
 	{
-		if ($this->intId) 
-			$this->Database->prepare(
-				"UPDATE " . $this->strTable . " SET `logging`='1' WHERE id=?"
-			)->execute($this->intId);
+		if ($this->intId)
+		{ 
+			$this->Database->prepare("UPDATE " . $this->strTable . " SET `logging`='1' WHERE id=?")
+                           ->execute($this->intId);
+		}
 		$this->redirect($this->getReferer());
 	} // ena_logging
 	
 	public function dis_logging()
 	{
 		if ($this->intId) 
-			$this->Database->prepare(
-				"UPDATE " . $this->strTable . " SET `logging`='0' WHERE id=?"
-			)->execute($this->intId);
+		{
+			$this->Database->prepare("UPDATE " . $this->strTable . " SET `logging`='0' WHERE id=?")
+                           ->execute($this->intId);
+		}
 		$this->redirect($this->getReferer());
 	} // dis_logging
 	
