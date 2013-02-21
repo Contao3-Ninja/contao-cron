@@ -12,12 +12,28 @@
 
 
 /**
+ * Register the namespaces
+ */
+ClassLoader::addNamespaces(array
+(
+	'BugBuster',
+));
+
+
+/**
  * Register the classes
  */
 ClassLoader::addClasses(array
 (
-	'CronController'      => 'system/modules/cron/public/CronController.php',
+	// Jobs
+	'PurgeLog'                      => 'system/modules/cron/jobs/PurgeLog.php',
+
 	// Drivers
-	'Contao\DC_CronTable' => 'system/modules/cron/drivers/DC_CronTable.php',
-	'PurgeLog'            => 'system/modules/cron/jobs/PurgeLog.php',
+	'Contao\DC_CronTable'           => 'system/modules/cron/drivers/DC_CronTable.php',
+
+	// Public
+	'BugBuster\Cron\CronController' => 'system/modules/cron/public/CronController.php',
+
+	// Classes
+	'BugBuster\Cron\DCA_crontab'    => 'system/modules/cron/classes/DCA_crontab.php',
 ));

@@ -21,7 +21,7 @@
 $GLOBALS['TL_LANG']['tl_crontab']['title']['0']    = "Titel";
 $GLOBALS['TL_LANG']['tl_crontab']['title']['1']    = "Enter a descriptive title for the job.";
 $GLOBALS['TL_LANG']['tl_crontab']['job']['0']      = "Job";
-$GLOBALS['TL_LANG']['tl_crontab']['job']['1']      = "Enter the path of the PHP script to execute.";
+$GLOBALS['TL_LANG']['tl_crontab']['job']['1']      = "Enter the relative path of the PHP script to execute. Example: system/modules/cron/jobs/PurgeLog.php";
 $GLOBALS['TL_LANG']['tl_crontab']['t_minute']['0'] = "Minute";
 $GLOBALS['TL_LANG']['tl_crontab']['t_minute']['1'] = "List the minutes for example as 5,10,15-20,30.<br />Use the form */15 for example for every 15 minutes.<br />Enter * for every minute.";
 $GLOBALS['TL_LANG']['tl_crontab']['t_hour']['0']   = "Hour";
@@ -44,9 +44,9 @@ $GLOBALS['TL_LANG']['tl_crontab']['logging']['1']  = "Make log entry when job is
  */
 $GLOBALS['TL_LANG']['tl_crontab']['tl_minute']	= 'Minute';
 $GLOBALS['TL_LANG']['tl_crontab']['tl_hour']	= 'Hour';
-$GLOBALS['TL_LANG']['tl_crontab']['tl_dom']		= 'DOM';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_dom']		= 'Day of the month';
 $GLOBALS['TL_LANG']['tl_crontab']['tl_month']	= 'Month';
-$GLOBALS['TL_LANG']['tl_crontab']['tl_dow']		= 'DOW';
+$GLOBALS['TL_LANG']['tl_crontab']['tl_dow']		= 'Day of the week';
 $GLOBALS['TL_LANG']['tl_crontab']['lastrun']	= 'Last run';
 $GLOBALS['TL_LANG']['tl_crontab']['nextrun']	= 'Next run';
 

@@ -14,6 +14,11 @@
  */
 
 /**
+ * Run in a custom namespace, so the class can be replaced
+ */
+namespace BugBuster\Cron;
+
+/**
  * Initialize the system
  */
 define('TL_MODE', 'BE');
@@ -28,7 +33,7 @@ define('CRON_MAX_RUN', 5);	// stop processung jobs in one trigger after this tim
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  */
-class CronController extends Backend
+class CronController extends \Backend
 {
 	/**
 	 * Initialize the controller
@@ -54,14 +59,14 @@ class CronController extends Backend
 		$endtime  = $currtime+$limit;
 		
 		// process cron list
-		$q = $this->Database->prepare("SELECT * FROM `tl_crontab` 
-                                       WHERE `enabled`='1' 
-                                       AND (
-                                             (`nextrun`>0 and `nextrun`<?) 
-                                          OR (`nextrun`=0 and `scheduled`<?)
-                                           ) 
-                                       ORDER BY `nextrun`, `scheduled`")
-                            ->executeUncached($currtime, $currtime-86400);
+		$q = \Database::getInstance()->prepare("SELECT * FROM `tl_crontab` 
+                                                WHERE `enabled`='1' 
+                                                AND (
+                                                      (`nextrun`>0 and `nextrun`<?) 
+                                                   OR (`nextrun`=0 and `scheduled`<?)
+                                                    ) 
+                                                ORDER BY `nextrun`, `scheduled`")
+                                     ->executeUncached($currtime, $currtime-86400);
 		$locked = false;
 		while ($q->next()) 
 		{
@@ -73,7 +78,7 @@ class CronController extends Backend
 			if (!$locked) 
 			{
 				// ensure exclusive access
-				$ql = $this->Database->prepare("SELECT get_lock('cronlock',0) AS lockstate")->executeUncached();
+				$ql = \Database::getInstance()->prepare("SELECT get_lock('cronlock',0) AS lockstate")->executeUncached();
 				if ( !$ql->next() || !intval($ql->lockstate) ) 
 				{
 				    return;
@@ -111,23 +116,23 @@ class CronController extends Backend
 							'scheduled'	=> $currtime
 						);
 					}
-					$this->Database->prepare("UPDATE `tl_crontab` %s WHERE id=?")
-                                   ->set($dataset)
-                                   ->executeUncached($q->id);
+					\Database::getInstance()->prepare("UPDATE `tl_crontab` %s WHERE id=?")
+                                            ->set($dataset)
+                                            ->executeUncached($q->id);
 				} // if
 				if ($cronJob['logging'] || $output!='') 
 				{
 					if ($output!='') 
 					{
 						$this->log(
-							'Cron job <em>'.$q->title.'</em> failed:<br/>'.$output, 
+							'Cron job '.$q->title.' failed: '.$output, 
 							'CronController run()', 
 							TL_ERROR);
 					}
 					else 
 					{
 						$this->log(
-							'Cron job <em>'.$q->title.'</em> '.($cronJob['completed'] ? 'completed.' : 'processed partially.'), 
+							'Cron job '.$q->title.' '.($cronJob['completed'] ? 'completed.' : 'processed partially.'), 
 							'CronController run()', 
 							TL_GENERAL);
 					}
@@ -139,16 +144,16 @@ class CronController extends Backend
 					'nextrun'	=> $this->schedule($q),
 					'scheduled'	=> $currtime
 				);
-				$this->Database->prepare("UPDATE `tl_crontab` %s WHERE id=?")
-                               ->set($dataset)
-                               ->executeUncached($q->id);
+				\Database::getInstance()->prepare("UPDATE `tl_crontab` %s WHERE id=?")
+                                        ->set($dataset)
+                                        ->executeUncached($q->id);
 			} // if
 		} // while
 		
 		// release lock
 		if ($locked)
 		{
-			$this->Database->prepare("SELECT release_lock('cronlock')")->executeUncached();
+			\Database::getInstance()->prepare("SELECT release_lock('cronlock')")->executeUncached();
 		}
 	} // run
 	
@@ -280,6 +285,6 @@ class CronController extends Backend
 /**
  * Instantiate controller
  */
-$objCron = new CronController();
+$objCron = new \BugBuster\Cron\CronController();
 $objCron->run();
 

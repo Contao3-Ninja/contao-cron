@@ -14,10 +14,9 @@
  */
 
 /**
- * HACK, only for POC
  * Run in a custom namespace, so the class can be replaced
  */
-namespace Contao; //TODO; own Namespace
+namespace Contao; // BugBuster\Cron;
 
 /**
  * Class DC_CronTable
@@ -44,8 +43,8 @@ class DC_CronTable extends \DC_Table
 	{
 		if ($this->intId)
 		{ 
-			$this->Database->prepare("UPDATE " . $this->strTable . " SET `enabled`='1' WHERE id=?")
-                           ->execute($this->intId);
+			\Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET `enabled`='1' WHERE id=?")
+                                    ->execute($this->intId);
 		}
 		$this->redirect($this->getReferer());
 	} // enable
@@ -54,8 +53,8 @@ class DC_CronTable extends \DC_Table
 	{
 		if ($this->intId) 
 		{
-			$this->Database->prepare("UPDATE " . $this->strTable . " SET `enabled`='0', `nextrun`=0, `scheduled`=0 WHERE id=?")
-                           ->execute($this->intId);
+			\Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET `enabled`='0', `nextrun`=0, `scheduled`=0 WHERE id=?")
+                                    ->execute($this->intId);
 		}
 		$this->redirect($this->getReferer());
 	} // disable
@@ -64,8 +63,8 @@ class DC_CronTable extends \DC_Table
 	{
 		if ($this->intId)
 		{ 
-			$this->Database->prepare("UPDATE " . $this->strTable . " SET `logging`='1' WHERE id=?")
-                           ->execute($this->intId);
+			\Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET `logging`='1' WHERE id=?")
+                                    ->execute($this->intId);
 		}
 		$this->redirect($this->getReferer());
 	} // ena_logging
@@ -74,8 +73,8 @@ class DC_CronTable extends \DC_Table
 	{
 		if ($this->intId) 
 		{
-			$this->Database->prepare("UPDATE " . $this->strTable . " SET `logging`='0' WHERE id=?")
-                           ->execute($this->intId);
+			\Database::getInstance()->prepare("UPDATE " . $this->strTable . " SET `logging`='0' WHERE id=?")
+                                    ->execute($this->intId);
 		}
 		$this->redirect($this->getReferer());
 	} // dis_logging

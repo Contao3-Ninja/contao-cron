@@ -21,7 +21,7 @@
 $GLOBALS['TL_LANG']['tl_crontab']['title']['0']    = "Titel";
 $GLOBALS['TL_LANG']['tl_crontab']['title']['1']    = "Geben Sie einen beschreibenden Titel für den Auftrag ein.";
 $GLOBALS['TL_LANG']['tl_crontab']['job']['0']      = "Job";
-$GLOBALS['TL_LANG']['tl_crontab']['job']['1']      = "Geben Sie den Pfad zum auszuführenden PHP-Script an.";
+$GLOBALS['TL_LANG']['tl_crontab']['job']['1']      = "Geben Sie den relativen Pfad zum auszuführenden PHP-Script an, Beispiel: system/modules/cron/jobs/PurgeLog.php";
 $GLOBALS['TL_LANG']['tl_crontab']['t_minute']['0'] = "Minute";
 $GLOBALS['TL_LANG']['tl_crontab']['t_minute']['1'] = "Minutenangabe in Listenform zum Beispiel 5,10,15-20,30.<br />Um einen Job alle 15 Minuten auszuführen geben Sie */15 ein.<br />* steht für jede Minute.";
 $GLOBALS['TL_LANG']['tl_crontab']['t_hour']['0']   = "Stunde";

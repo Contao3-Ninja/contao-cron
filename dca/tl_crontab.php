@@ -24,7 +24,14 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 	(
 		'dataContainer'			=> 'CronTable',
 		'enableVersioning'		=> true,
-		'onsubmit_callback'		=> array(array('tl_crontab', 'adjustFields'))
+		'onsubmit_callback'		=> array(array('BugBuster\Cron\DCA_crontab', 'adjustFields')),
+        'sql' => array
+        (
+           'keys' => array
+            (
+                'id' => 'primary'
+            )
+        )
 	),
 
 	// List
@@ -40,7 +47,7 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 		(
 			'fields'			=> array('title'),
 			'format'			=> '%s',
-			'label_callback'	=> array('tl_crontab', 'listJobs')
+			'label_callback'	=> array('BugBuster\Cron\DCA_crontab', 'listJobs')
 		),
 		'global_operations' => array
 		(
@@ -81,11 +88,11 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			),
 			'enabled' => array
 			(
-				'button_callback'	=>	array('tl_crontab', 'enabledButton')
+				'button_callback'	=>	array('BugBuster\Cron\DCA_crontab', 'enabledButton')
 			),
 			'logging' => array
 			(
-				'button_callback'	=>	array('tl_crontab', 'loggingButton')
+				'button_callback'	=>	array('BugBuster\Cron\DCA_crontab', 'loggingButton')
 			)
 		)
 	),
@@ -99,19 +106,41 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 	// Fields
 	'fields' => array
 	(
+    	'id' => array
+    	(
+    	        'sql'       => "int(10) unsigned NOT NULL auto_increment"
+    	),
+    	'tstamp' => array
+    	(
+    	        'sql'       => "int(10) unsigned NOT NULL default '0'"
+    	),
+    	'lastrun' => array
+    	(
+    	        'sql'       => "int(10) unsigned NOT NULL default '0'"
+    	),
+    	'nextrun' => array
+    	(
+    	        'sql'       => "int(10) unsigned NOT NULL default '0'"
+    	),
+    	'scheduled' => array
+    	(
+    	        'sql'       => "int(10) unsigned NOT NULL default '0'"
+    	),
 		'title' => array
 		(
 			'label'			=> &$GLOBALS['TL_LANG']['tl_crontab']['title'],
 			'exclude'		=> true,
 			'inputType'		=> 'text',
-			'eval'			=> array('mandatory'=>true, 'maxlength'=>100)
+			'eval'			=> array('mandatory'=>true, 'maxlength'=>100),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		'job' => array
 		(
 			'label'			=> &$GLOBALS['TL_LANG']['tl_crontab']['job'],
 			'exclude'		=> true,
 			'inputType'		=> 'text',
-			'eval'			=> array('mandatory'=>true, 'maxlength'=>100)
+			'eval'			=> array('mandatory'=>true, 'maxlength'=>100),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		't_minute' => array
 		(
@@ -120,7 +149,8 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'inputType'		=> 'text',
 			'default'		=> '*',
 			'explanation'	=> 'cron_elements',
-			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true)
+			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		't_hour' => array
 		(
@@ -129,7 +159,8 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'inputType'		=> 'text',
 			'default'		=> '*',
 			'explanation'	=> 'cron_elements',
-			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true)
+			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		't_dom' => array
 		(
@@ -138,7 +169,8 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'inputType'		=> 'text',
 			'default'		=> '*',
 			'explanation'	=> 'cron_elements',
-			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true)
+			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		't_month' => array
 		(
@@ -147,7 +179,8 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'inputType'		=> 'text',
 			'default'		=> '*',
 			'explanation'	=> 'cron_elements',
-			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true)
+			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		't_dow' => array
 		(
@@ -156,147 +189,26 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'inputType'		=> 'text',
 			'default'		=> '*',
 			'explanation'	=> 'cron_elements',
-			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true)
+			'eval'			=> array('nospace'=>true,'maxlength'=>100, 'helpwizard'=>true),
+			'sql'           => "varchar(100) NOT NULL default ''"
 		),
 		'runonce' => array(
 			'label'			=> &$GLOBALS['TL_LANG']['tl_crontab']['runonce'],
 			'exclude'		=> true,
-			'inputType'		=> 'checkbox'
+			'inputType'		=> 'checkbox',
+			'sql'           => "char(1) NOT NULL default '0'"
 		),
 		'enabled' => array(
 			'label'			=> &$GLOBALS['TL_LANG']['tl_crontab']['enabled'],
 			'exclude'		=> true,
-			'inputType'		=> 'checkbox'
+			'inputType'		=> 'checkbox',
+			'sql'           => "char(1) NOT NULL default '0'"
 		),
 		'logging' => array(
 			'label'			=> &$GLOBALS['TL_LANG']['tl_crontab']['logging'],
 			'exclude'		=> true,
-			'inputType'		=> 'checkbox'
+			'inputType'		=> 'checkbox',
+			'sql'           => "char(1) NOT NULL default '0'"
 		)
 	)
 );
-
-/**
- * Class tl_cron
- *
- * Provide miscellaneous methods that are used by the data configuration array.
- */
-class tl_crontab extends Backend
-{
-	/**
-	 * List a particular record
-	 */
-	public function listJobs($row)
-	{
-		$text = &$GLOBALS['TL_LANG']['tl_crontab'];
-		$link = $this->Environment->script . '?do=cron&amp;act=edit&amp;id=' . $row['id'];
-		return 
-			'<a class="cron-list" href="'.$link.'"><div>' .
-				'<div class="main">' .
-					'<div class="title">' . $row['title'] . '</div>' .
-//					'<div class="job">' . $row['job'] . '</div>' .
-				'</div>' .
-				'<div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['tl_minute'] . '</div>' .
-						'<div class="data">' . ($row['t_minute']=='' ? '*' : $row['t_minute']) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['tl_hour'] . '</div>' .
-						'<div class="data">' . ($row['t_hour']=='' ? '*' : $row['t_hour']) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['tl_dom'] . '</div>' .
-						'<div class="data">' . ($row['t_dom']=='' ? '*' : $row['t_dom']) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['tl_month'] . '</div>' .
-						'<div class="data">' . ($row['t_month']=='' ? '*' : $row['t_month']) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['tl_dow'] . '</div>' .
-						'<div class="data">' . ($row['t_dow']=='' ? '*' : $row['t_dow']) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['lastrun'] . '</div>' .
-						'<div class="data">' . ($row['lastrun']==0 ? '' : date($GLOBALS['TL_CONFIG']['datimFormat'], $row['lastrun'])) . '</div>' .
-					'</div>' .
-					'<div class="floatleft">' .
-						'<div class="caption">' . $text['nextrun'] . '</div>' .
-						'<div class="data">' . ($row['nextrun']==0 ? '' : date($GLOBALS['TL_CONFIG']['datimFormat'], $row['nextrun'])) . '</div>' .
-					'</div>' .
-				'</div>' .
-			'</div></a>';
-	} // listJobs
-	
-	/**
-	 * Create the enabled/disabled button
-	 */
-	public function enabledButton($row, $href, $label, $title, $icon, $attributes)
-	{
-		if ($row['enabled']=='1') {		
-			$href = 'act=disable';
-			$label = &$GLOBALS['TL_LANG']['tl_crontab']['disable'];
-			$icon = 'system/modules/cron/assets/enabled.png';
-		} else {
-			$href = 'act=enable';
-			$label = &$GLOBALS['TL_LANG']['tl_crontab']['enable'];
-			$icon = 'system/modules/cron/assets/disabled.png';
-		} // if
-		$title = sprintf($label[1], $row['id']);
-		return 
-			'<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . 
-			 '" title="' . specialchars($title) . '"' . $attributes . '>' . 
-				'<img src="'.$icon.'" width="16" height="16" alt="'.specialchars($title).'" />' .
-			'</a> ';
-	} // enabledButton
-	
-	/**
-	 * Create the logging on/off button
-	 */
-	public function loggingButton($row, $href, $label, $title, $icon, $attributes)
-	{
-		if ($row['logging']=='1') {		
-			$href = 'act=dis_logging';
-			$label = &$GLOBALS['TL_LANG']['tl_crontab']['dis_logging'];
-			$icon = 'system/modules/cron/assets/logging.png';
-		} else {
-			$href = 'act=ena_logging';
-			$label = &$GLOBALS['TL_LANG']['tl_crontab']['ena_logging'];
-			$icon = 'system/modules/cron/assets/notlogging.png';
-		} // if
-		$title = sprintf($label[1], $row['id']);
-		return 
-			'<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . 
-			 '" title="' . specialchars($title) . '"' . $attributes . '>' . 
-				'<img src="'.$icon.'" width="16" height="16" alt="'.specialchars($title).'" />' .
-			'</a> ';
-	} // loggingButton
-	
-	/**
-	 * Adjust data fields
-	 */
-	public function adjustFields(DataContainer $dc)
-	{
-		$q = $this->Database->prepare("SELECT * FROM tl_crontab WHERE id=?")
-				->limit(1)
-				->execute($dc->id);
-		if (!$q->next()) return;
-
-		$arrSet = array(
-			'scheduled'	=> 0,
-			'nextrun'	=> 0
-		);
-		if (!strlen(trim($q->t_minute))) $arrSet['t_minute'] = '*';
-		if (!strlen(trim($q->t_hour))) $arrSet['t_hour'] = '*';
-		if (!strlen(trim($q->t_dom))) $arrSet['t_dom'] = '*';
-		if (!strlen(trim($q->t_month))) $arrSet['t_month'] = '*';
-		if (!strlen(trim($q->t_dow))) $arrSet['t_dow'] = '*';
-		
-		$this->Database->prepare("UPDATE tl_crontab %s WHERE id=?")
-			->set($arrSet)
-			->execute($dc->id);
-	} // adjustFields
-	
-} // class
-

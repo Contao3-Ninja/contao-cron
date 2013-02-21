@@ -16,5 +16,5 @@
 
 Header("Content-Type: image/png");
 include("./CronController.php");
-//readfile(TL_ROOT . '/system/modules/cron/images/cron.png');
-readfile('./assets/cron.png');
+//readfile(TL_ROOT . '/system/modules/cron/assets/cron.png');
+readfile('../assets/cron.png');

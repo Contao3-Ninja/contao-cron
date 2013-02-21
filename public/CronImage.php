@@ -15,5 +15,5 @@
  */
 
 Header("Content-Type: image/gif");
-//include("./CronController.php");
+include("./CronController.php");
 echo base64_decode("R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==");
