@@ -54,11 +54,11 @@ class PurgeLog extends Backend
 	        return;
 	    }
 	    
-		$this->Database->prepare("DELETE FROM `tl_log`")->executeUncached();
-		if ($cronJob['logging'])
-		{
-		    $this->log('System log purged by cron job.', 'PurgeLog run()', TL_GENERAL);
-		}
+        $this->Database->prepare("DELETE FROM `tl_log`")->executeUncached();
+        if ($cronJob['logging'])
+        {
+            $this->log('System log purged by cron job.', 'PurgeLog run()', TL_GENERAL);
+        }
 	} // run
 	
 } // class PurgeLog

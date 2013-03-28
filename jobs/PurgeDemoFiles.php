@@ -37,28 +37,28 @@ class PurgeDemoFiles extends Backend
     //killing my software with w... :-)
     protected $killed = false;
 
-	/**
-	 * Initialize the controller
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	} // __construct
+    /**
+     * Initialize the controller
+     */
+    public function __construct()
+    {
+    	parent::__construct();
+    } // __construct
 	
-	/**
-	 * Implement the commands to run by this batch program
-	 */
-	public function run()
-	{
-	    global  $cronJob; // from CronController
-
-	    //At this time the job should be defered, 
-	    //no new actions should be started after this time.
-	    if (time() >= $cronJob['endtime'])
-	    {
-	        $cronJob['completed'] = false;
-	        return;
-	    }
+    /**
+     * Implement the commands to run by this batch program
+     */
+    public function run()
+    {
+        global  $cronJob; // from CronController
+    
+        //At this time the job should be defered, 
+        //no new actions should be started after this time.
+        if (time() >= $cronJob['endtime'])
+        {
+            $cronJob['completed'] = false;
+            return;
+        }
         if (is_file(TL_ROOT . '/' . $this->file))
         {
             $objFile = new File($this->file);
@@ -68,7 +68,7 @@ class PurgeDemoFiles extends Backend
             unset($objFile);
             $this->killed = true;
         }
-
+    
         if (is_dir(TL_ROOT . '/' . $this->dir))
         {
             $objDir = new Folder($this->dir);
@@ -77,12 +77,12 @@ class PurgeDemoFiles extends Backend
             unset($objDir);
             $this->killed = true;
         }
-
+    
         if ($this->killed && $cronJob['logging'])
         {
-		    $this->log('MA Demo files purged by cron job.', 'PurgeDemoFiles run()', TL_GENERAL);
+    	    $this->log('MA Demo files purged by cron job.', 'PurgeDemoFiles run()', TL_GENERAL);
         }
-	} // run
+    } // run
 	
 } // class PurgeDemoFiles
 
