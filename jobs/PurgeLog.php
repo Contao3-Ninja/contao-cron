@@ -5,6 +5,7 @@
  *
  * Contao Module "Cron Scheduler"
  * Sample PHP script to execute by cron: Purges the system log
+ * Job: system/modules/cron/jobs/PurgeLog.php
  *
  * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
  * @author     Glen Langer (BugBuster)
@@ -43,8 +44,21 @@ class PurgeLog extends Backend
 	 */
 	public function run()
 	{
+	    global  $cronJob; // from CronController
+	    
+	    //At this time the job should be defered,
+	    //no new actions should be started after this time.
+	    if (time() >= $cronJob['endtime'])
+	    {
+	        $cronJob['completed'] = false;
+	        return;
+	    }
+	    
 		$this->Database->prepare("DELETE FROM `tl_log`")->executeUncached();
-		$this->log('System log purged by cron job.', 'PurgeLog run()', TL_GENERAL);
+		if ($cronJob['logging'])
+		{
+		    $this->log('System log purged by cron job.', 'PurgeLog run()', TL_GENERAL);
+		}
 	} // run
 	
 } // class PurgeLog
