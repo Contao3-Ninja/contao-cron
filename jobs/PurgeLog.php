@@ -31,35 +31,35 @@ require_once('../../../initialize.php');
 class PurgeLog extends Backend
 {
 
-	/**
-	 * Initialize the controller
-	 */
-	public function __construct()
-	{
-		parent::__construct();
-	} // __construct
-	
-	/**
-	 * Implement the commands to run by this batch program
-	 */
-	public function run()
-	{
-	    global  $cronJob; // from CronController
-	    
-	    //At this time the job should be defered,
-	    //no new actions should be started after this time.
-	    if (time() >= $cronJob['endtime'])
-	    {
-	        $cronJob['completed'] = false;
-	        return;
-	    }
-	    
+    /**
+     * Initialize the controller
+     */
+    public function __construct()
+    {
+    	parent::__construct();
+    } // __construct
+    
+    /**
+     * Implement the commands to run by this batch program
+     */
+    public function run()
+    {
+        global  $cronJob; // from CronController
+        
+        //At this time the job should be defered,
+        //no new actions should be started after this time.
+        if (time() >= $cronJob['endtime'])
+        {
+            $cronJob['completed'] = false;
+            return;
+        }
+        
         $this->Database->prepare("DELETE FROM `tl_log`")->executeUncached();
         if ($cronJob['logging'])
         {
             $this->log('System log purged by cron job.', 'PurgeLog run()', TL_GENERAL);
         }
-	} // run
+    } // run
 	
 } // class PurgeLog
 
