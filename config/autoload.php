@@ -27,6 +27,7 @@ ClassLoader::addClasses(array
 (
 	// Jobs
 	'PurgeLog'                      => 'system/modules/cron/jobs/PurgeLog.php',
+	'PurgeDemoFiles'                => 'system/modules/cron/jobs/PurgeDemoFiles.php',
 
 	// Drivers
 	'Contao\DC_CronTable'           => 'system/modules/cron/drivers/DC_CronTable.php',
@@ -34,6 +35,17 @@ ClassLoader::addClasses(array
 	// Public
 	'BugBuster\Cron\CronController' => 'system/modules/cron/public/CronController.php',
 
+	// Module
+	'BugBuster\Cron\ModuleCron'     => 'system/modules/cron/modules/ModuleCron.php',
+	
 	// Classes
 	'BugBuster\Cron\DCA_crontab'    => 'system/modules/cron/classes/DCA_crontab.php',
+));
+
+/**
+ * Register the templates
+ */
+TemplateLoader::addFiles(array
+(
+    'mod_cron_fe' => 'system/modules/cron/templates',
 ));

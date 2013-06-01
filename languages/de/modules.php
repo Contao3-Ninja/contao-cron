@@ -18,3 +18,8 @@
 $GLOBALS['TL_LANG']['MOD']['cron']['0'] = "Scheduler";
 $GLOBALS['TL_LANG']['MOD']['cron']['1'] = "Ein Cron-ähnliches Scheduler-Modul für Contao";
  
+/**
+ * Front end modules
+ */
+$GLOBALS['TL_LANG']['FMD']['cron_fe'] = array('Scheduler','Scheduler über das Frontend auslösen.');
+

@@ -17,3 +17,5 @@
 
 $GLOBALS['TL_LANG']['MOD']['cron']['0'] = "Scheduler";
 $GLOBALS['TL_LANG']['MOD']['cron']['1'] = "A cron like scheduler for Contao";
+
+$GLOBALS['TL_LANG']['FMD']['cron_fe'] = array('Scheduler','Trigger scheduler via the frontend.');

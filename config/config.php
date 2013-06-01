@@ -25,3 +25,9 @@ $GLOBALS['BE_MOD']['system']['cron'] = array(
 );
 
 
+/**
+ * -------------------------------------------------------------------------
+ * FRONT END MODULES
+ * -------------------------------------------------------------------------
+ */
+$GLOBALS['FE_MOD']['miscellaneous']['cron_fe'] = 'BugBuster\Cron\ModuleCron';
