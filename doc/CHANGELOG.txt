@@ -1,0 +1,12 @@
+========================
+Contao Cron CHANGELOG
+========================
+
+Version 3.0.0 (2013-02-21)
+--------------------------
+- Changes for compatibility of Contao 3
+
+
+  ---- Derived from cron 1.1.0 (2010-02-16) ----
+  ------- Peter Koch (acenes) 2007-2009 --------
+
