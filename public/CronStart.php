@@ -7,14 +7,17 @@ use Contao\Frontend;
 use Contao\Backend;
 
 /**
- * Contao Open Source CMS
+ * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ *
+ * Contao Module "Cron Scheduler"
+ * CronStart: Cron start now button
  * 
- * Copyright (C) 2005-2012 Leo Feyer
- * 
- * @package   CronInfo 
- * @author    Glen Langer 
- * @license   LGPL 
- * @copyright Glen Langer 2012 
+ * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
+ * @package    Cron
+ * @license    LGPL
+ * @filesource
+ * @see	       https://github.com/BugBuster1701/contao-cron
  */
 
 
