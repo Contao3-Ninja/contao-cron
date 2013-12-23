@@ -94,6 +94,24 @@ class DC_CronTable extends \DC_Table
 		$this->redirect($this->getReferer());
 	} // dis_logging
 	
+	public function start_now()
+	{
+	    if ($this->intId)
+	    {
+	        //set next run date to now
+	        $dataset = array(
+        	                'nextrun'	=> $nextrun = time()-60,
+        	                'scheduled'	=> time()
+        	                );
+	        \Database::getInstance()->prepare("UPDATE " . $this->strTable . " %s 
+                                                WHERE `enabled`='1'
+                                                AND id=?")
+                                    ->set($dataset)
+                                    ->executeUncached($this->intId);
+	    }
+	    $this->redirect($this->getReferer());
+	} // start_now
+	
 	/**
 	 * Find new schedule time for job
 	 * @see CronController

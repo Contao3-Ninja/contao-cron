@@ -125,6 +125,32 @@ class DCA_crontab extends \Backend
 			'</a> ';
 	} // loggingButton
 	
+	public function startnowButton($row, $href, $label, $title, $icon, $attributes)
+	{
+	    $href = 'act=start_now';
+	    $label = &$GLOBALS['TL_LANG']['tl_crontab']['startnow'];
+	    $icon = 'system/modules/cron/assets/start_now.png';
+	    $title = sprintf($label[1], $row['id']);
+	    /*
+	    return
+    	    '<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . '"' .
+    	    'onclick="if(!confirm(\''.$title.'?\'))return false"'.
+    	    ' title="' . specialchars($title) . '"' . $attributes . '>' .
+    	    '<img src="'.$icon.'" width="16" height="16" alt="'.specialchars($title).'" />' .
+    	    '</a> ';
+    	    */
+	    $strEncypt = base64_encode( \Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
+	    $href = 'system/modules/cron/public/CronStart.php?crcst='.$strEncypt.'';
+	    
+	    return
+    	    '<a href="' . $href . '"' .
+    	    'onclick="if(!confirm(\''.$title.'?\'))return false;Backend.openModalIframe({\'width\':735,\'height\':405,\'title\':\'Cronjob Start\',\'url\':this.href});return false"'.
+    	    ' title="' . specialchars($title) . '"' . $attributes . '>' .
+    	    '<img src="'.$icon.'" width="16" height="16" alt="'.specialchars($title).'" />' .
+    	    '</a> ';
+	}
+	
+	
 	/**
 	 * Adjust data fields
 	 */
