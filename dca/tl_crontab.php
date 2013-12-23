@@ -93,6 +93,10 @@ $GLOBALS['TL_DCA']['tl_crontab'] = array
 			'logging' => array
 			(
 				'button_callback'	=>	array('BugBuster\Cron\DCA_crontab', 'loggingButton')
+			),
+			'startnow' => array
+			(
+				'button_callback'	=>	array('BugBuster\Cron\DCA_crontab', 'startnowButton')
 			)
 		)
 	),

@@ -71,4 +71,6 @@ $GLOBALS['TL_LANG']['tl_crontab']['enable']['0']      = 'Enable execution';
 $GLOBALS['TL_LANG']['tl_crontab']['enable']['1']      = 'Enable execution of job %s';
 $GLOBALS['TL_LANG']['tl_crontab']['disable']['0']     = 'Disable execution';
 $GLOBALS['TL_LANG']['tl_crontab']['disable']['1']     = 'Disable execution of job %s';
+$GLOBALS['TL_LANG']['tl_crontab']['startnow']['0']     = "Run";
+$GLOBALS['TL_LANG']['tl_crontab']['startnow']['1']     = "Run the execution of this job %s";
 

@@ -16,7 +16,7 @@
 /**
  * Add to palette
  */
-$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{cron_legend},cron_limit'; 
+$GLOBALS['TL_DCA']['tl_settings']['palettes']['default'] .= ';{cron_scheduler_legend},cron_limit'; 
 
 /**
  * Add field

@@ -18,6 +18,6 @@
 /**
  * Fields
  */
-$GLOBALS['TL_LANG']['tl_settings']['cron_legend']     = "CRON extension";
+$GLOBALS['TL_LANG']['tl_settings']['cron_scheduler_legend']     = "CRON/Scheduler extension";
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['0'] = "Cron job run limit";
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['1'] = "Enter the time limit in seconds after which cron jobs shall be defered (0 disables all cron jobs).";

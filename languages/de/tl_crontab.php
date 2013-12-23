@@ -47,7 +47,7 @@ $GLOBALS['TL_LANG']['tl_crontab']['tl_hour']       = "Stunde";
 $GLOBALS['TL_LANG']['tl_crontab']['tl_dom']        = "Tag im Monat";
 $GLOBALS['TL_LANG']['tl_crontab']['tl_month']      = "Monat";
 $GLOBALS['TL_LANG']['tl_crontab']['tl_dow']        = "Wochentag";
-$GLOBALS['TL_LANG']['tl_crontab']['lastrun']       = "Letzte Ausührung";
+$GLOBALS['TL_LANG']['tl_crontab']['lastrun']       = "Letzte Ausführung";
 $GLOBALS['TL_LANG']['tl_crontab']['nextrun']       = "Nächste Ausführung";
 
 /**
@@ -71,4 +71,6 @@ $GLOBALS['TL_LANG']['tl_crontab']['enable']['0']      = "Aktivieren";
 $GLOBALS['TL_LANG']['tl_crontab']['enable']['1']      = "Ausführung für Job %s aktivieren";
 $GLOBALS['TL_LANG']['tl_crontab']['disable']['0']     = "Deaktivieren";
 $GLOBALS['TL_LANG']['tl_crontab']['disable']['1']     = "Ausführung für Job %s deaktivieren";
- 
+$GLOBALS['TL_LANG']['tl_crontab']['startnow']['0']     = "Starten";
+$GLOBALS['TL_LANG']['tl_crontab']['startnow']['1']     = "Job %s sofort starten";
+

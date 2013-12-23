@@ -279,7 +279,7 @@ class CronController extends \Backend
 			} // if
 		} // for
 	} // parseElement
-
+	
 } // class CronController
 
 /**
