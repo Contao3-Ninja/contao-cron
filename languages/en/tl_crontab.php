@@ -1,7 +1,7 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  * TL_ROOT/system/modules/cron/languages/en/tl_crontab.php
