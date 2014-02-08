@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
 *
 * Contao Module "Cron Scheduler", FE Module
 * for use on the frondend to trigger cron.
 *
-* @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+* @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
 * @author     Glen Langer (BugBuster)
 * @package    Cron
 * @license    LGPL
@@ -22,9 +22,9 @@ namespace BugBuster\Cron;
 /**
  * Class ModuleCron
  *
- * @copyright  Glen Langer 2009..2012
- * @author     Glen Langer
- * @package    GLVisitors
+ * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
+ * @package    Cron
  * @license    LGPL
  */
 class ModuleCron extends \Module

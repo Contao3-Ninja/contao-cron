@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  * CronStart: Cron start now button
  * 
- * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -26,8 +26,8 @@ use BugBuster\Cron\Cron_Encryption;
 /**
  * Class CronStart 
  *
- * @copyright  Glen Langer 2012 
- * @author     Glen Langer 
+ * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
+ * @author     Glen Langer (BugBuster)
  * @package    Cron
  */
 class CronStart extends Frontend
