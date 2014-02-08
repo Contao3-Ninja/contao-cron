@@ -20,6 +20,7 @@ namespace BugBuster\Cron;
 
 
 use Contao\DC_CronTable;
+use BugBuster\Cron\Cron_Encryption;
 
 /**
  * Class DCA_crontab
@@ -131,15 +132,16 @@ class DCA_crontab extends \Backend
 	    $label = &$GLOBALS['TL_LANG']['tl_crontab']['startnow'];
 	    $icon = 'system/modules/cron/assets/start_now.png';
 	    $title = sprintf($label[1], $row['id']);
-	    /*
-	    return
-    	    '<a href="' . $this->addToUrl($href.'&amp;id='.$row['id']) . '"' .
-    	    'onclick="if(!confirm(\''.$title.'?\'))return false"'.
-    	    ' title="' . specialchars($title) . '"' . $attributes . '>' .
-    	    '<img src="'.$icon.'" width="16" height="16" alt="'.specialchars($title).'" />' .
-    	    '</a> ';
-    	    */
-	    $strEncypt = base64_encode( \Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
+
+	    if (in_array('mcrypt', get_loaded_extensions()))
+	    {
+	        $strEncypt = base64_encode( \Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
+	    }
+	    else 
+	    {
+	        $strEncypt = base64_encode( Cron_Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
+	    }
+	    
 	    $href = 'system/modules/cron/public/CronStart.php?crcst='.$strEncypt.'';
 	    
 	    return

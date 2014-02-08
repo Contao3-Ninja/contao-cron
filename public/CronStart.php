@@ -1,11 +1,5 @@
 <?php
 
-use Contao\Database;
-
-use Contao\Frontend;
-
-use Contao\Backend;
-
 /**
  * Contao Open Source CMS, Copyright (C) 2005-2013 Leo Feyer
  *
@@ -27,13 +21,14 @@ use Contao\Backend;
 define('TL_MODE', 'FE');
 require_once '../../../initialize.php';
 
+use BugBuster\Cron\Cron_Encryption;
 
 /**
  * Class CronStart 
  *
  * @copyright  Glen Langer 2012 
  * @author     Glen Langer 
- * @package    CronInfo
+ * @package    Cron
  */
 class CronStart extends Frontend
 {
@@ -58,7 +53,15 @@ class CronStart extends Frontend
 	{
 	    $output = '';
 		$strEncypt = Input::get('crcst');
-		$arrDecypt = deserialize( Encryption::decrypt( base64_decode($strEncypt) ) );
+		if (in_array('mcrypt', get_loaded_extensions()))
+		{
+		    $arrDecypt = deserialize( Encryption::decrypt( base64_decode($strEncypt) ) );
+		}
+		else
+		{
+		    $arrDecypt = deserialize( Cron_Encryption::decrypt( base64_decode($strEncypt) ) );
+		}
+		
 		if (is_array($arrDecypt) && $arrDecypt[1] >0) 
 		{
 			$title  = $arrDecypt[0];
@@ -74,7 +77,7 @@ class CronStart extends Frontend
 			$this->Template->theme = $this->getTheme();
 			$this->Template->base = Environment::get('base');
 			$this->Template->language = $GLOBALS['TL_LANGUAGE'];
-			$this->Template->title = 'CronInfo';
+			$this->Template->title = 'Cron';
 			$this->Template->charset = $GLOBALS['TL_CONFIG']['characterSet'];
 			
 			$this->Template->cronjob      = 'Hack Attack!';
