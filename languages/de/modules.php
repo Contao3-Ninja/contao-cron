@@ -1,25 +1,19 @@
-<?php  
-
+<?php
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
+ * Translations are managed using Transifex. To create a new translation
+ * or to help to maintain an existing one, please register at transifex.com.
  *
- * Contao Module "Cron Scheduler"
- * TL_ROOT/system/modules/cron/languages/de/modules.php 
- * Deutsch translation file
- * 
- * @copyright  Glen Langer 2013 <http://www.contao.glen-langer.de>
- * @author     Glen Langer (BugBuster)
- * @package    Cron
- * @license    LGPL
- * @filesource
- * @see	       https://github.com/BugBuster1701/contao-cron
+ * @link http://help.transifex.com/intro/translating.html
+ * @link https://www.transifex.com/projects/p/contao-cron/language/de/
+ *
+ * @license http://www.gnu.org/licenses/lgpl-3.0.html LGPL
+ *
+ * last-updated: 2014-02-09T00:53:29+01:00
  */
- 
-$GLOBALS['TL_LANG']['MOD']['cron']['0'] = "Scheduler";
-$GLOBALS['TL_LANG']['MOD']['cron']['1'] = "Ein Cron-ähnliches Scheduler-Modul für Contao";
- 
-/**
- * Front end modules
- */
-$GLOBALS['TL_LANG']['FMD']['cron_fe'] = array('Scheduler','Scheduler über das Frontend auslösen.');
+
+
+$GLOBALS['TL_LANG']['FMD']['cron_fe']['0'] = 'Scheduler';
+$GLOBALS['TL_LANG']['FMD']['cron_fe']['1'] = 'Scheduler über das Frontend auslösen.';
+$GLOBALS['TL_LANG']['MOD']['cron']['0']    = 'Scheduler';
+$GLOBALS['TL_LANG']['MOD']['cron']['1']    = 'Ein Cron-ähnliches Scheduler-Modul für Contao';
 

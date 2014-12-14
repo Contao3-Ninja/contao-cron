@@ -1,0 +1,45 @@
+{
+	"name":"bugbuster/contao-cron",
+	"description":"Contao CMS cron scheduler",
+	"keywords":["cron","scheduler","contao"],
+	"type":"contao-module",
+	"homepage":"http://www.contao.glen-langer.de",
+	"license":"LGPL-3.0+",
+	"authors":[
+		{
+			"name":"Glen Langer",
+			"homepage":"http://www.contao.glen-langer.de",
+			"role":"Developer"
+		}
+	],
+	"support":{
+		"issues":"https://github.com/BugBuster1701/contao-cron/issues",
+		"irc":"irc://irc.freenode.org/contao.dev",
+		"source":"https://github.com/BugBuster1701/contao-cron",
+		"forum":"https://community.contao.org/de/forumdisplay.php?119-Sonstige-Erweiterungen"
+	},
+	"require":{
+		"php":">=5.3",
+		"contao/core":">=3.2.0,<4",
+		"contao-community-alliance/composer-plugin": "*"
+	},
+	"autoload":{
+		"classmap":[""]
+	},
+	"replace":{
+		"contao-legacy/cron":"self.version"
+	},
+	"extra":{
+		"contao":{
+			"sources":{
+				"":"system/modules/cron"
+			},
+			"transifex": {
+				"project": "contao-cron",
+				"prefix": "master-",
+				"languages_cto": "languages",
+				"languages_tx": ".tx"
+			}
+		}
+	}
+}
