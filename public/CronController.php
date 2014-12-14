@@ -21,21 +21,25 @@ namespace BugBuster\Cron;
 /**
  * Initialize the system
  */
-define('TL_MODE', 'BE');
-
-$dir = __DIR__;
-
-while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
+if (!function_exists('log_message'))  // zur Vermeidung von PHP Fatal error:  Cannot redeclare __error()
 {
-    $dir = dirname($dir);
+    define('TL_MODE', 'BE');
+    
+    // Suche nach initialize.php, damit auch über composer nutzbar    
+    $dir = __DIR__;
+    
+    while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
+    {
+        $dir = dirname($dir);
+    }
+    
+    if (!is_file($dir . '/system/initialize.php'))
+    {
+        echo 'Could not find initialize.php!';
+        exit(1);
+    }
+    require($dir . '/system/initialize.php');
 }
-
-if (!is_file($dir . '/system/initialize.php'))
-{
-    echo 'Could not find initialize.php!';
-    exit(1);
-}
-require($dir . '/system/initialize.php');
 
 define('CRON_MAX_RUN', 5);	// stop processung jobs in one trigger after this time in seconds 
 
