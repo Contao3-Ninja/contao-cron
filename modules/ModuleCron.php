@@ -68,6 +68,8 @@ class ModuleCron extends \Module
     public function run()
     {
         $objRequest = new \Request();
+        $objRequest->redirect = true;
+        $objRequest->rlimit   = 10;
         $objRequest->send( \Environment::get('base') . 'system/modules/cron/public/CronController.php');
         if ( $objRequest->hasError() )
         {
