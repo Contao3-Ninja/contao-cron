@@ -11,7 +11,6 @@
  * last-updated: 2014-12-14T21:52:39+01:00
  */
 
-
 $GLOBALS['TL_LANG']['tl_crontab']['copy']['0']        = 'Копировать задание';
 $GLOBALS['TL_LANG']['tl_crontab']['copy']['1']        = 'Копировать это задание.';
 $GLOBALS['TL_LANG']['tl_crontab']['delete']['0']      = 'Удалить задание';
@@ -43,15 +42,15 @@ $GLOBALS['TL_LANG']['tl_crontab']['show']['1']        = 'Показать дет
 $GLOBALS['TL_LANG']['tl_crontab']['startnow']['0']    = 'Выполнить';
 $GLOBALS['TL_LANG']['tl_crontab']['startnow']['1']    = 'Выполнить задание %s';
 $GLOBALS['TL_LANG']['tl_crontab']['t_dom']['0']       = 'Дни месяца';
-$GLOBALS['TL_LANG']['tl_crontab']['t_dom']['1']       = 'Перечислите дни месяца (напр.: 1,10,14-16,20.<br />Введите * (если каждый день).';
+$GLOBALS['TL_LANG']['tl_crontab']['t_dom']['1']       = 'Перечислите дни месяца (напр.: 1,10,14-16,20.<br />Введите * (звездочку) если каждый день.';
 $GLOBALS['TL_LANG']['tl_crontab']['t_dow']['0']       = 'Дни недели';
-$GLOBALS['TL_LANG']['tl_crontab']['t_dow']['1']       = 'Перечислите дни недели (0=воскресенье) (напр.: 0,2-4,7 или имена Sun, Mon, Tue, Wed, Thu, Fri, Sat).<br />Введите * (если каждую неделю).';
+$GLOBALS['TL_LANG']['tl_crontab']['t_dow']['1']       = 'Перечислите дни недели (0=воскресенье) (напр.: 0,2-4,7 или имена Sun, Mon, Tue, Wed, Thu, Fri, Sat).<br />Введите * (звездочку) если каждую неделю.';
 $GLOBALS['TL_LANG']['tl_crontab']['t_hour']['0']      = 'Часы';
-$GLOBALS['TL_LANG']['tl_crontab']['t_hour']['1']      = 'Перечислите часы (например: 2,4,5-7,9).<br />Используйте шаблон  */3  (напр.: каждые 3 часа).<br />Введите * (если каждый час).';
+$GLOBALS['TL_LANG']['tl_crontab']['t_hour']['1']      = 'Перечислите часы (например: 2,4,5-7,9).<br />Используйте шаблон  */3  (напр.: каждые 3 часа).<br />Введите * (звездочку) если каждый час.';
 $GLOBALS['TL_LANG']['tl_crontab']['t_minute']['0']    = 'Минуты';
-$GLOBALS['TL_LANG']['tl_crontab']['t_minute']['1']    = 'Перечислите минуты (например: 5,10,15-20,30).<br />Используйте шаблон */15 (напр.: каждые 15 минут).<br />Введите * (если каждую минуту).';
+$GLOBALS['TL_LANG']['tl_crontab']['t_minute']['1']    = 'Перечислите минуты (например: 5,10,15-20,30).<br />Используйте шаблон */15 (напр.: каждые 15 минут).<br />Введите * (звездочку) если каждую минуту.';
 $GLOBALS['TL_LANG']['tl_crontab']['t_month']['0']     = 'Месяцы';
-$GLOBALS['TL_LANG']['tl_crontab']['t_month']['1']     = 'Перечислите месяцы (напр.: 1,3,7-9, или имена Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec).<br />Введите * (если каждый месяц).';
+$GLOBALS['TL_LANG']['tl_crontab']['t_month']['1']     = 'Перечислите месяцы (напр.: 1,3,7-9, или имена Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec).<br />Введите * (звездочку) если каждый месяц.';
 $GLOBALS['TL_LANG']['tl_crontab']['title']['0']       = 'Название';
 $GLOBALS['TL_LANG']['tl_crontab']['title']['1']       = 'Введите описательный заголовок задания.';
 $GLOBALS['TL_LANG']['tl_crontab']['tl_dom']           = 'Дени месяца';

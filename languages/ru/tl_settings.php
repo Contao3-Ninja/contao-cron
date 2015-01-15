@@ -11,8 +11,7 @@
  * last-updated: 2014-12-14T21:52:39+01:00
  */
 
-
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['0']       = 'Лимит запуска заданий планировщика';
 $GLOBALS['TL_LANG']['tl_settings']['cron_limit']['1']       = 'Введите лимит времени в секундах, после которого задание планировщика будет отсрочено (0 отключит все задания).';
-$GLOBALS['TL_LANG']['tl_settings']['cron_scheduler_legend'] = 'Планировщик CRON';
+$GLOBALS['TL_LANG']['tl_settings']['cron_scheduler_legend'] = 'CRON планировщик';
 
