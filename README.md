@@ -1,5 +1,7 @@
 # Contao CRON Scheduler
+[![Latest Stable Version](https://poser.pugx.org/bugbuster/contao-cron/v/stable.svg)](https://packagist.org/packages/bugbuster/contao-cron) [![Total Downloads](https://poser.pugx.org/bugbuster/contao-cron/downloads.svg)](https://packagist.org/packages/bugbuster/contao-cron) [![Latest Unstable Version](https://poser.pugx.org/bugbuster/contao-cron/v/unstable.svg)](https://packagist.org/packages/bugbuster/contao-cron) [![License](https://poser.pugx.org/bugbuster/contao-cron/license.svg)](https://packagist.org/packages/bugbuster/contao-cron)
 
+## About
 Automatically run PHP scripts on a schedule, schedule syntax from unix cron/crontab.
 
 ## For Translators

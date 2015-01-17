@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  * CronStart: Cron start now button
  * 
- * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -17,32 +17,29 @@
 /**
  * Initialize the system
  */
-if (!function_exists('log_message'))  // zur Vermeidung von PHP Fatal error:  Cannot redeclare __error()
+define('TL_MODE', 'FE');
+
+// Suche nach initialize.php, damit auch über composer nutzbar    
+$dir = __DIR__;
+
+while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
 {
-    define('TL_MODE', 'FE');
-    
-    // Suche nach initialize.php, damit auch über composer nutzbar    
-    $dir = __DIR__;
-    
-    while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
-    {
-        $dir = dirname($dir);
-    }
-    
-    if (!is_file($dir . '/system/initialize.php'))
-    {
-        echo 'Could not find initialize.php!';
-        exit(1);
-    }
-    require($dir . '/system/initialize.php');
+    $dir = dirname($dir);
 }
+
+if (!is_file($dir . '/system/initialize.php'))
+{
+    echo 'Could not find initialize.php!';
+    exit(1);
+}
+require_once($dir . '/system/initialize.php');
 
 use BugBuster\Cron\Cron_Encryption;
 
 /**
  * Class CronStart 
  *
- * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  */

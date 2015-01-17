@@ -1,12 +1,12 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2014 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  * CronImage.php: Pseudo-image (invisible gif) for use on the frondend to trigger cron.
  *
- * @copyright  Glen Langer 2013..2014 <http://www.contao.glen-langer.de>
+ * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
