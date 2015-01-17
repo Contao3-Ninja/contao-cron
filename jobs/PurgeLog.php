@@ -18,25 +18,24 @@
 /**
  * Initialize the system
  */
-if (!function_exists('log_message'))  // zur Vermeidung von PHP Fatal error:  Cannot redeclare __error()
+define('TL_MODE', 'BE');
+
+// Suche nach initialize.php, damit auch über composer nutzbar    
+$dir = __DIR__;
+
+while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
 {
-    define('TL_MODE', 'BE');
-    
-    // Suche nach initialize.php, damit auch über composer nutzbar    
-    $dir = __DIR__;
-    
-    while ($dir != '.' && $dir != '/' && !is_file($dir . '/system/initialize.php'))
-    {
-        $dir = dirname($dir);
-    }
-    
-    if (!is_file($dir . '/system/initialize.php'))
-    {
-        echo 'Could not find initialize.php!';
-        exit(1);
-    }
-    require($dir . '/system/initialize.php');
+    $dir = dirname($dir);
 }
+
+if (!is_file($dir . '/system/initialize.php'))
+{
+    echo 'Could not find initialize.php!';
+    exit(1);
+}
+// require_once to prevent PHP Fatal error:  Cannot redeclare __error()
+require_once($dir . '/system/initialize.php');
+
 
 /**
  * Class PurgeLog
@@ -61,7 +60,7 @@ class PurgeLog extends Backend
      */
     public function run()
     {
-        global  $cronJob; // from CronController
+        global  $cronJob; // from CronController Class
         
         //At this time the job should be defered,
         //no new actions should be started after this time.
