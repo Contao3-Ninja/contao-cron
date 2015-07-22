@@ -165,7 +165,7 @@ class CronStart extends Frontend
 	            'completed'	=> true
 	    );
 	    ob_start();
-	    $e = error_reporting(E_ALL);
+	    $e = error_reporting(E_ALL & ~E_NOTICE);
 	    include(TL_ROOT . '/' . $qjob->job);
 	    error_reporting($e);
 	    return str_replace("\n",'<br />', trim(preg_replace('#<\s*br\s*/?\s*>#i', "\n", ob_get_flush())));
