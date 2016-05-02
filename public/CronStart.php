@@ -45,7 +45,7 @@ use BugBuster\Cron\Cron_Encryption;
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  */
-class CronStart extends Frontend
+class CronStart extends Backend
 {
 
 	/**
@@ -53,7 +53,9 @@ class CronStart extends Frontend
 	 */
 	public function __construct()
 	{
-		parent::__construct();
+        $this->import('BackendUser', 'User');
+        parent::__construct();
+        $this->User->authenticate();
 
 		// See #4099
 		define('BE_USER_LOGGED_IN', false);
@@ -165,7 +167,7 @@ class CronStart extends Frontend
 	            'completed'	=> true
 	    );
 	    ob_start();
-	    $e = error_reporting(E_ALL & ~E_NOTICE);
+	    $e = error_reporting(E_ALL & ~E_NOTICE & ~E_STRICT & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 	    include(TL_ROOT . '/' . $qjob->job);
 	    error_reporting($e);
 	    return str_replace("\n",'<br />', trim(preg_replace('#<\s*br\s*/?\s*>#i', "\n", ob_get_flush())));
