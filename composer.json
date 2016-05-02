@@ -40,6 +40,9 @@
 				"languages_cto": "languages",
 				"languages_tx": ".tx"
 			}
+		},
+		"branch-alias": {
+			"dev-develop": "3.4.x-dev"
 		}
 	}
 }
