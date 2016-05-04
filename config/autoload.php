@@ -1,9 +1,7 @@
 <?php
 
 /**
- * Contao Open Source CMS
- *
- * Copyright (c) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (c) 2005-2016 Leo Feyer
  *
  * @package Cron
  * @link    https://contao.org
@@ -26,21 +24,22 @@ ClassLoader::addNamespaces(array
 ClassLoader::addClasses(array
 (
 	// Jobs
-	'PurgeLog'                       => 'system/modules/cron/jobs/PurgeLog.php',
+	'PurgeLog'                         => 'system/modules/cron/jobs/PurgeLog.php',
 
 	// Drivers
-	'Contao\DC_CronTable'            => 'system/modules/cron/drivers/DC_CronTable.php',
+	'Contao\DC_CronTable'              => 'system/modules/cron/drivers/DC_CronTable.php',
 
 	// Modules
-	'BugBuster\Cron\ModuleCron'      => 'system/modules/cron/modules/ModuleCron.php',
+	'BugBuster\Cron\ModuleCron'        => 'system/modules/cron/modules/ModuleCron.php',
 
 	// Public
-	'CronStart'                      => 'system/modules/cron/public/CronStart.php',
-	'BugBuster\Cron\CronController'  => 'system/modules/cron/public/CronController.php',
+	'CronStart'                        => 'system/modules/cron/public/CronStart.php',
+	'BugBuster\Cron\CronController'    => 'system/modules/cron/public/CronController.php',
+	'BugBuster\Cron\CronFeController'  => 'system/modules/cron/public/CronFeController.php',
 
 	// Classes
-	'BugBuster\Cron\DCA_crontab'     => 'system/modules/cron/classes/DCA_crontab.php',
-	'BugBuster\Cron\Cron_Encryption' => 'system/modules/cron/classes/Cron_Encryption.php',
+	'BugBuster\Cron\DCA_crontab'       => 'system/modules/cron/classes/DCA_crontab.php',
+	'BugBuster\Cron\Cron_Encryption'   => 'system/modules/cron/classes/Cron_Encryption.php',
 ));
 
 

@@ -65,12 +65,12 @@ class ModuleCron extends \Module
         $this->Template->out = "<!-- cron extension {$return} -->\n";
     }
     
-    public function run()
+    public function run() 
     {
         $objRequest = new \Request();
         $objRequest->redirect = true;
         $objRequest->rlimit   = 10;
-        $objRequest->send( \Environment::get('base') . 'system/modules/cron/public/CronController.php');
+        $objRequest->send( \Environment::get('base') . 'system/modules/cron/public/CronFeController.php');
         if ( $objRequest->hasError() )
         {
             return $objRequest->error;
