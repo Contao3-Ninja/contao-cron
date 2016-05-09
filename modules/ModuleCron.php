@@ -1,12 +1,12 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2016 Leo Feyer
 *
 * Contao Module "Cron Scheduler", FE Module
 * for use on the frondend to trigger cron.
 *
-* @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+* @copyright  Glen Langer 2013..2016 <http://contao.ninja>
 * @author     Glen Langer (BugBuster)
 * @package    Cron
 * @license    LGPL
@@ -22,7 +22,7 @@ namespace BugBuster\Cron;
 /**
  * Class ModuleCron
  *
- * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2013..2016 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -60,22 +60,27 @@ class ModuleCron extends \Module
      */
     protected function compile()
     {
-        //$this->log('cron job start.', 'ModuleCron', CRON);
         $return = $this->run();
-        $this->Template->out = "<!-- cron extension {$return} -->\n";
+        $this->Template->out = $return;
     }
     
-    public function run()
+    public function run() 
     {
-        $objRequest = new \Request();
-        $objRequest->redirect = true;
-        $objRequest->rlimit   = 10;
-        $objRequest->send( \Environment::get('base') . 'system/modules/cron/public/CronController.php');
-        if ( $objRequest->hasError() )
-        {
-            return $objRequest->error;
-        }
-        return 'OK';
+        global $objPage;
+        $blnXhtml = ($objPage->outputFormat == 'xhtml');
+        $strScripts = \Template::generateInlineScript('
+            setTimeout(
+                function(){
+                        try{
+                            var n=new XMLHttpRequest();
+                        }catch(r){
+                            return;
+                        }
+                        n.open("GET","system/modules/cron/public/CronFeController.php",true);
+                        n.send();
+                },1300
+            ); ', $blnXhtml);
+        return $strScripts;
     } // run
     
 } // class
