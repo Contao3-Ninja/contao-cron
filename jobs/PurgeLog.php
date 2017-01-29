@@ -1,13 +1,13 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  * Sample PHP script to execute by cron: Purges the system log
  * Job: system/modules/cron/jobs/PurgeLog.php
  *
- * @copyright  Glen Langer 2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -41,7 +41,7 @@ if (!defined('TL_MODE'))
 /**
  * Class PurgeLog
  * 
- * @copyright  Glen Langer 2012..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2012..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  */

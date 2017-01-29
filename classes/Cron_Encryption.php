@@ -1,11 +1,11 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  *
- * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2013..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -22,7 +22,7 @@ namespace BugBuster\Cron;
  * Class Cron Encryption, an alternative for mcrypt extension for hosters without it.
  * (Extension mcrypt ist used by the Contao class "Encryption".)
  *
- * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2013..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @author     http://stackoverflow.com/a/802957       
  */

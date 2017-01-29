@@ -1,11 +1,11 @@
 <?php 
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Contao Module "Cron Scheduler"
  *
- * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2013..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  * @license    LGPL
@@ -133,14 +133,7 @@ class DCA_crontab extends \Backend
 	    $icon = 'system/modules/cron/assets/start_now.png';
 	    $title = sprintf($label[1], $row['id']);
 
-	    if (in_array('mcrypt', get_loaded_extensions()))
-	    {
-	        $strEncypt = base64_encode( \Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
-	    }
-	    else 
-	    {
-	        $strEncypt = base64_encode( Cron_Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
-	    }
+        $strEncypt = base64_encode( Cron_Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
 	    
 	    $href = 'system/modules/cron/public/CronStart.php?crcst='.$strEncypt.'';
 	    
