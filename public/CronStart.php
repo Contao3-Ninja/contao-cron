@@ -70,14 +70,7 @@ class CronStart extends Backend
 	{
 	    $output = '';
 		$strEncypt = Input::get('crcst');
-		if (in_array('mcrypt', get_loaded_extensions()))
-		{
-		    $arrDecypt = deserialize( Encryption::decrypt( base64_decode($strEncypt) ) );
-		}
-		else
-		{
-		    $arrDecypt = deserialize( Cron_Encryption::decrypt( base64_decode($strEncypt) ) );
-		}
+	    $arrDecypt = deserialize( Cron_Encryption::decrypt( base64_decode($strEncypt) ) );
 		
 		if (is_array($arrDecypt) && $arrDecypt[1] >0) 
 		{

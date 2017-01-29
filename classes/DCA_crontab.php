@@ -133,14 +133,7 @@ class DCA_crontab extends \Backend
 	    $icon = 'system/modules/cron/assets/start_now.png';
 	    $title = sprintf($label[1], $row['id']);
 
-	    if (in_array('mcrypt', get_loaded_extensions()))
-	    {
-	        $strEncypt = base64_encode( \Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
-	    }
-	    else 
-	    {
-	        $strEncypt = base64_encode( Cron_Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
-	    }
+        $strEncypt = base64_encode( Cron_Encryption::encrypt( serialize( array( $title,$row['id'] ) ) ) );
 	    
 	    $href = 'system/modules/cron/public/CronStart.php?crcst='.$strEncypt.'';
 	    
