@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Contao Open Source CMS, Copyright (C) 2005-2015 Leo Feyer
+ * Contao Open Source CMS, Copyright (C) 2005-2017 Leo Feyer
  *
  * Contao Module "Cron Scheduler", FE Helper
  *
@@ -46,7 +46,7 @@ define('CRON_MAX_RUN', 5);	// stop processung jobs in one trigger after this tim
 /**
  * Class CronController
  * 
- * @copyright  Glen Langer 2013..2015 <http://contao.ninja>
+ * @copyright  Glen Langer 2013..2017 <http://contao.ninja>
  * @author     Glen Langer (BugBuster)
  * @package    Cron
  */
