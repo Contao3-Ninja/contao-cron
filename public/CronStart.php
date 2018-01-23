@@ -83,7 +83,7 @@ class CronStart extends Backend
 			//$this->loadLanguageFile('tl_cron_info');
 			
 			$this->Template = new BackendTemplate('mod_cron_start_now');
-			$this->Template->referer = $this->getReferer(ENCODE_AMPERSANDS); //$this->Environment->get(httpReferer);
+			$this->Template->referer = $this->getReferer(true); //$this->Environment->get(httpReferer);
 			$this->Template->theme = $this->getTheme();
 			$this->Template->base = Environment::get('base');
 			$this->Template->language = $GLOBALS['TL_LANGUAGE'];
@@ -101,7 +101,7 @@ class CronStart extends Backend
 		//$this->loadLanguageFile('tl_cron_info');
 
 		$this->Template = new BackendTemplate('mod_cron_start_now');
-		$this->Template->referer = $this->getReferer(ENCODE_AMPERSANDS); //$this->Environment->get(httpReferer);
+		$this->Template->referer = $this->getReferer(true); //$this->Environment->get(httpReferer);
 		$this->Template->theme = $this->getTheme();
 		$this->Template->base = Environment::get('base');
 		$this->Template->language = $GLOBALS['TL_LANGUAGE'];
@@ -151,12 +151,12 @@ class CronStart extends Backend
 	    $currtime = time();
 	    $endtime  = $currtime+$limit;
 	    $cronJob = array(
-	            'id'		=> $q->id,
-	            'title'		=> $q->title,
-	            'lastrun'	=> $q->lastrun,
+	            'id'		=> $qjob->id,
+	            'title'		=> $qjob->title,
+	            'lastrun'	=> $qjob->lastrun,
 	            'endtime'	=> $endtime,
-	            'runonce'	=> intval($q->runonce) > 0,
-	            'logging'	=> intval($q->logging) > 0,
+	            'runonce'	=> intval($qjob->runonce) > 0,
+	            'logging'	=> intval($qjob->logging) > 0,
 	            'completed'	=> true
 	    );
 	    ob_start();
